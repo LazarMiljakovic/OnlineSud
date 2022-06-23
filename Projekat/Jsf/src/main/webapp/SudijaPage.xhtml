@@ -1,0 +1,206 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head></h:head> 
+<body> 
+<h2>OnlineSud</h2>
+	<div>
+		<h:button value="Izadji" outcome="home.xhtml" />
+	</div>
+	<hr />
+	<h3>Sudije</h3>
+	<hr />
+	<h:dataTable value="#{sudijaController.VratiSudije()}" var="s">
+
+		<h:column>
+			<f:facet name="header">
+    				Id
+    			</f:facet>
+			<h:outputText value="#{s.id}" />
+		</h:column>
+
+		<h:column>
+			<f:facet name="header">
+    				Ime
+				</f:facet>
+			<h:outputText value="#{s.ime}" />
+		</h:column>
+
+		<h:column>
+			<f:facet name="header">
+    				Prezime
+				</f:facet>
+			<h:outputText value="#{s.prezime}" />
+		</h:column>
+
+		<h:column>
+			<f:facet name="header">
+    				Id suda
+				</f:facet>
+			<h:outputText value="#{s.idSuda}" />
+		</h:column>
+
+	</h:dataTable>
+	<hr/>
+	<h:form>
+		<h4>Dodavanje novog sudije</h4>
+		<h:outputLabel value="Ime:" />
+		<div>
+			<h:inputText value="#{sudijaController.ime}"></h:inputText>
+		</div>
+		<div>
+			<h:outputLabel value="Prezime:" />
+		</div>
+		<div>
+			<h:inputText value="#{sudijaController.prezime}"></h:inputText>
+		</div>
+		<div>
+			<h:outputLabel value="Id Suda:" />
+		</div>
+		<div>
+			<h:inputText value="#{sudijaController.idSuda}"></h:inputText>
+		</div>
+
+
+		<h:commandButton value="Dodaj sudiju"
+			action="#{sudijaController.UbaciSudiju()}"></h:commandButton>
+
+	</h:form>
+	<hr/>
+	<h:form>
+		<h4>Brisanje izabranog sudije</h4>
+		<h:outputLabel value="Id sudije:" />
+		<div>
+			<h:inputText value="#{sudijaController.id}"></h:inputText>
+		</div>
+
+
+		<h:commandButton value="Ukloni sud"
+			action="#{sudijaController.BrisiSudiju()}"></h:commandButton>
+
+	</h:form>
+	<hr/>
+	<h:form>
+		<h4>Azuriranje suda</h4>
+		<h:outputLabel value="Id sudije:" />
+		<div>
+			<h:inputText value="#{sudijaController.id}"></h:inputText>
+		</div>
+		<h:outputLabel value="Ime:" />
+		<div>
+			<h:inputText value="#{sudijaController.ime}"></h:inputText>
+		</div>
+		<div>
+			<h:outputLabel value="Prezime:" />
+		</div>
+		<div>
+			<h:inputText value="#{sudijaController.prezime}"></h:inputText>
+		</div>
+		<div>
+			<h:outputLabel value="Id Suda:" />
+		</div>
+		<div>
+			<h:inputText value="#{sudijaController.idSuda}"></h:inputText>
+		</div>
+
+		<h:commandButton value="Azuriraj sudiju"
+			action="#{sudijaController.IzmeniSudiju()}"></h:commandButton>
+
+	</h:form>
+	<hr/>
+	<h:form>
+		<h4>Premestanja u drugi sud</h4>
+		<h:outputLabel value="Id sudije:" />
+		<div>
+			<h:inputText value="#{sudijaController.id}"></h:inputText>
+		</div>
+
+		<h:outputLabel value="Id suda:" />
+		<div>
+			<h:inputText value="#{sudijaController.idSudPremestanje}"></h:inputText>
+		</div>
+		<h:commandButton value="Premesti"
+			action="#{sudijaController.PrekomandaSudije()}"></h:commandButton>
+	</h:form>
+	<hr/>
+	<h:form>
+		<h4>Promena statusa tuzbe</h4>
+		<h:outputLabel value="Id sudije:" />
+		<div>
+			<h:inputText value="#{sudijaController.id}"></h:inputText>
+		</div>
+		<h:outputLabel value="Id tuzbe:" />
+		<div>
+			<h:inputText value="#{sudijaController.idTuzbe}"></h:inputText>
+		</div>
+		<h:selectOneRadio value="#{sudijaController.status}">
+			<f:selectItems value="#{sudijaController.statusi}" />
+		</h:selectOneRadio>
+
+		<h:commandButton value="Promeni status tuzbe"
+			action="#{sudijaController.PromeniStatus()}">
+		</h:commandButton>
+	</h:form>
+	<hr/>
+	<h:form>
+		<h4>Tuzbe predate sudiji</h4>
+		<h:outputLabel value="Id sudije:" />
+		<div>
+			<h:inputText value="#{sudijaController.id}"></h:inputText>
+		</div>
+		<h:commandButton value="Prikazi"
+			action="#{sudijaController.VratiTuzbe()}">
+		</h:commandButton>
+	</h:form>
+	<h:dataTable value="#{sudijaController.dodeljeneTuzbe}" var="s">
+
+		<h:column>
+			<f:facet name="header">
+    				Id
+    			</f:facet>
+			<h:outputText value="#{s.id}" />
+		</h:column>
+		
+		<h:column>
+			<f:facet name="header">
+    				Id suda
+    			</f:facet>
+			<h:outputText value="#{s.idSuda}" />
+		</h:column>
+
+		<h:column>
+			<f:facet name="header">
+    				Broj licne tuzioca
+				</f:facet>
+			<h:outputText value="#{s.idTuzioc}" />
+		</h:column>
+
+		<h:column>
+			<f:facet name="header">
+    				Broj licne optuzenog
+				</f:facet>
+			<h:outputText value="#{s.idOptuzen}" />
+		</h:column>
+
+		<h:column>
+			<f:facet name="header">
+    				Sadrzaj
+				</f:facet>
+			<h:outputText value="#{s.sadrzaj}" />
+		</h:column>
+		
+		<h:column>
+			<f:facet name="header">
+    				Status
+				</f:facet>
+			<h:outputText value="#{s.status}" />
+		</h:column>
+	</h:dataTable>
+	<hr />
+	
+</body> 
+</html>

@@ -1,0 +1,10 @@
+com\ejb\servisi\Impl\SudijaServisImpl.class
+com\ejb\servisi\SudServis.class
+com\jpa\entiteti\Sud.class
+com\ejb\servisi\StrankaServis.class
+com\ejb\servisi\Impl\StrankaServisImpl.class
+com\ejb\servisi\SudijaServis.class
+com\jpa\entiteti\Tuzba.class
+com\jpa\entiteti\Stranka.class
+com\jpa\entiteti\Sudija.class
+com\ejb\servisi\Impl\SudServisImpl.class

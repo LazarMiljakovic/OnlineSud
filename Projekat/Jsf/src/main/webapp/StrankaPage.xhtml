@@ -1,0 +1,202 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head></h:head> 
+<body> 
+<h2>OnlineSud</h2>
+	<div>
+		<h:button value="Izadji" outcome="home.xhtml" />
+	</div>
+	<hr />
+	<h3>Stranke</h3>
+	<hr />
+	<h:dataTable value="#{strankaController.VratiStranke()}" var="s">
+
+		<h:column>
+			<f:facet name="header">
+    				Broj licne
+				</f:facet>
+			<h:outputText value="#{s.brojLicne}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">
+    				Ime
+    			</f:facet>
+			<h:outputText value="#{s.ime}" />
+		</h:column>
+
+		<h:column>
+			<f:facet name="header">
+    				Prezime
+				</f:facet>
+			<h:outputText value="#{s.prezime}" />
+		</h:column>
+		
+		<h:column>
+			<f:facet name="header">
+    				Adresa
+				</f:facet>
+			<h:outputText value="#{s.adresa}" />
+		</h:column>
+	</h:dataTable>
+	<hr />
+	<h:form>
+		<h4>Dodavanje stranke</h4>
+		<div>
+			<h:outputLabel value="Broj licne karte:" />
+		</div>
+		<div>
+			<h:inputText value="#{strankaController.brLicne}"></h:inputText>
+		</div>
+		<h:outputLabel value="Ime:" />
+		<div>
+			<h:inputText value="#{strankaController.ime}"></h:inputText>
+		</div>
+		<div>
+			<h:outputLabel value="Prezime:" />
+		</div>
+		<div>
+			<h:inputText value="#{strankaController.prezime}"></h:inputText>
+		</div>
+		<div>
+			<h:outputLabel value="Adresa:" />
+		</div>
+		<div>
+			<h:inputText value="#{strankaController.adresa}"></h:inputText>
+		</div>
+
+
+		<h:commandButton value="Dodaj stranku"
+			action="#{strankaController.UbaciStranku()}"></h:commandButton>
+
+	</h:form>
+	<hr/>
+	<h:form>
+		<h4>Brisanje stranke</h4>
+		<h:outputLabel value="Broj licne karte:" />
+		<div>
+			<h:inputText value="#{strankaController.brLicne}"></h:inputText>
+		</div>
+
+
+		<h:commandButton value="Obrisi stranku"
+			action="#{strankaController.BrisiStranku()}"></h:commandButton>
+
+	</h:form>
+	<hr />
+	<h:form>
+		<h4>Pogledaj sve podnete i primljene tuzbe</h4>
+		<h:outputLabel value="Broj licne karte:" />
+		<div>
+			<h:inputText value="#{strankaController.brLicne}"></h:inputText>
+		</div>
+
+
+		<h:commandButton value="Prikazi tuzbe"
+			action="#{strankaController.VratiSveTuzbe()}"></h:commandButton>
+	</h:form>
+	
+	<h4>Vi podneli</h4>
+	<h:dataTable value="#{strankaController.tuzbeStranke}" var="s">
+
+		<h:column>
+			<f:facet name="header">
+    				Id Tuzbe
+    			</f:facet>
+			<h:outputText value="#{s.id}" />
+		</h:column>
+
+		<h:column>
+			<f:facet name="header">
+    				Broj licne optuzenog
+				</f:facet>
+			<h:outputText value="#{s.idOptuzen}" />
+		</h:column>
+		
+		<h:column>
+			<f:facet name="header">
+    				Sadrzaj
+				</f:facet>
+			<h:outputText value="#{s.sadrzaj}" />
+		</h:column>
+		
+		<h:column>
+			<f:facet name="header">
+    				Status
+				</f:facet>
+			<h:outputText value="#{s.status}" />
+		</h:column>
+
+	</h:dataTable>
+	
+	<h4>Protiv vas</h4>
+		<h:dataTable value="#{strankaController.tuzbeProtivStranke}" var="s">
+
+		<h:column>
+			<f:facet name="header">
+    				Id Tuzbe
+    			</f:facet>
+			<h:outputText value="#{s.id}" />
+		</h:column>
+
+		<h:column>
+			<f:facet name="header">
+    				Broj licne tuzioca
+				</f:facet>
+			<h:outputText value="#{s.idTuzioc}" />
+		</h:column>
+		
+		<h:column>
+			<f:facet name="header">
+    				Sadrzaj
+				</f:facet>
+			<h:outputText value="#{s.sadrzaj}" />
+		</h:column>
+		
+		<h:column>
+			<f:facet name="header">
+    				Status
+				</f:facet>
+			<h:outputText value="#{s.status}" />
+		</h:column>
+
+	</h:dataTable>
+	
+	<hr />
+	<h:form>
+		<h4>Podnesi tuzbu</h4>
+		<h:outputLabel value="Id suda kome podnosite:" />
+		<div>
+			<h:inputText value="#{strankaController.idSuda}"></h:inputText>
+		</div>
+		<div>
+			<h:outputLabel value="Broj licne tuzioca" />
+		</div>
+		<div>
+			<h:inputText value="#{strankaController.brLicne}"></h:inputText>
+		</div>
+		<div>
+			<h:outputLabel value="Broj licne optuzenog:" />
+		</div>
+		<div>
+			<h:inputText value="#{strankaController.brLicneOpt}"></h:inputText>
+		</div>
+		<div>
+			<h:outputLabel value="Sadrzaj tuzbe:" />
+		</div>
+		<div>
+			<h:inputText value="#{strankaController.sadrzaj}"></h:inputText>
+		</div>
+
+
+		<h:commandButton value="Podnesi tuzbu"
+			action="#{strankaController.PodnosenjeTuzbe()}"></h:commandButton>
+
+	</h:form>
+	<hr />
+</body> 
+</html>

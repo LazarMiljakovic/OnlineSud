@@ -1,0 +1,266 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head></h:head> 
+<body> 
+<h2>OnlineSud</h2>
+	<div>
+		<h:button value="Izadji" outcome="home.xhtml" />
+	</div>
+	<hr />
+	<h3>Sudovi</h3>
+	<hr />
+	<h:dataTable value="#{sudController.VratiSveSudove()}" var="s" >
+    			
+		<h:column>
+			<f:facet name="header">
+    				ID
+    			</f:facet>
+			<h:outputText value="#{s.id}" />
+		</h:column>
+
+		<h:column>
+			<f:facet name="header">
+    				Naziv
+				</f:facet>
+			<h:outputText value="#{s.naziv}" />
+		</h:column>
+
+		<h:column>
+			<f:facet name="header">
+    				Grad
+				</f:facet>
+			<h:outputText value="#{s.grad}" />
+		</h:column>
+
+		<h:column>
+			<f:facet name="header">
+    				Adresa
+				</f:facet>
+			<h:outputText value="#{s.adresa}" />
+		</h:column>
+
+		<h:column>
+			<f:facet name="header">
+    				Nivo
+				</f:facet>
+			<h:outputText value="#{s.nivo}" />
+		</h:column>
+
+		<h:column>
+			<f:facet name="header">
+    				Websajt
+				</f:facet>
+			<h:outputText value="#{s.websajt}" />
+		</h:column>
+
+	</h:dataTable>
+	<hr />
+	<h:form>
+		<h4>Dodavanje novog suda</h4>
+		<h:outputLabel value="Naziv:" />
+		<div>
+			<h:inputText value="#{sudController.naziv}"></h:inputText>
+		</div>
+		
+		<div>
+			<h:outputLabel value="Grad:" />
+		</div>
+		<div>
+			<h:inputText value="#{sudController.grad}"></h:inputText>
+		</div>
+		<div>
+			<h:outputLabel value="Adresa:" />
+		</div>
+		<div>
+			<h:inputText value="#{sudController.adresa}"></h:inputText>
+		</div>
+		<div>
+			<h:outputLabel value="Nivo:" />
+		</div>
+		<div>
+			<h:inputText value="#{sudController.nivo}"></h:inputText>
+		</div>
+		<div>
+			<h:outputLabel value="Websajt:" />
+		</div>
+		<div>
+			<h:inputText value="#{sudController.webSajt}"></h:inputText>
+		</div>
+
+
+		<h:commandButton value="Dodaj Sud" action="#{sudController.UbaciSud()}"></h:commandButton>
+
+	</h:form>
+	<hr />
+	<h:form>
+		<h4>Brisanje izabranog suda</h4>
+		<h:outputLabel value="Id Suda:" />
+		<div>
+			<h:inputText value="#{sudController.idSuda}"></h:inputText>
+		</div>
+
+
+		<h:commandButton value="Obrisi sud"
+			action="#{sudController.BrisiSud()}"></h:commandButton>
+
+	</h:form>
+	<hr />
+	<h:form>
+		<h4>Azuriranje suda</h4>
+		<h:outputLabel value="Id Suda:" />
+		<div>
+			<h:inputText value="#{sudController.azrsud.id}"></h:inputText>
+		</div>
+		
+		
+		<h:outputLabel value="Naziv:" />
+		<div>
+			<h:inputText value="#{sudController.azrsud.naziv}"></h:inputText>
+		</div>
+		<h:outputLabel value="Grad:" />
+		<div>
+			<h:inputText value="#{sudController.azrsud.grad}"></h:inputText>
+		</div>
+		<h:outputLabel value="Adresa:" />
+		<div>
+			<h:inputText value="#{sudController.azrsud.adresa}"></h:inputText>
+		</div>
+		<h:outputLabel value="Nivo:" />
+		
+		<div>
+			<h:inputText value="#{sudController.azrsud.nivo}"></h:inputText>
+		</div>
+		<h:outputLabel value="Websajt:" />
+		<div>
+			<h:inputText value="#{sudController.azrsud.websajt}"></h:inputText>
+		</div>
+		
+		<h:commandButton value="Azuriraj sud"
+			action="#{sudController.UpdateSuda()}"></h:commandButton>
+	</h:form>
+	<hr/>
+	<h:form>
+		<h4>Sudije izabranog suda</h4>
+		<h:outputLabel value="Id suda:" />
+		<div>
+			<h:inputText value="#{sudController.idSuda}"></h:inputText>
+		</div>
+
+
+		<h:commandButton value="Potrazi"
+			action="#{sudController.VratiSudijeSuda()}"></h:commandButton>
+
+	</h:form>
+	<h:dataTable value="#{sudController.sudije}" var="s">
+
+		<h:column>
+			<f:facet name="header">
+    				Id
+    			</f:facet>
+			<h:outputText value="#{s.id}" />
+		</h:column>
+
+		<h:column>
+			<f:facet name="header">
+    				Ime
+				</f:facet>
+			<h:outputText value="#{s.ime}" />
+		</h:column>
+
+		<h:column>
+			<f:facet name="header">
+    				Prezime
+				</f:facet>
+			<h:outputText value="#{s.prezime}" />
+		</h:column>
+
+		<h:column>
+			<f:facet name="header">
+    				Id Suda
+				</f:facet>
+			<h:outputText value="#{s.idSuda}" />
+		</h:column>
+
+	</h:dataTable>
+	<hr />
+	
+	<h:form>
+		<h4>Sve tuzbe podnete u sudu:</h4>
+		<h:outputLabel value="Id suda:" />
+		<div>
+			<h:inputText value="#{sudController.idSuda}"></h:inputText>
+		</div>
+		<h:commandButton value="Prikazi"
+			action="#{sudController.VratiPreuzeteTuzbe()}"></h:commandButton>
+	</h:form>
+	<h:dataTable value="#{sudController.tuzbe}" var="s">
+
+		<h:column>
+			<f:facet name="header">
+    				Id
+    			</f:facet>
+			<h:outputText value="#{s.id}" />
+		</h:column>
+
+		<h:column>
+			<f:facet name="header">
+    				Id Sudije
+				</f:facet>
+			<h:outputText value="#{s.idSudije}" />
+		</h:column>
+
+		<h:column>
+			<f:facet name="header">
+    				Id Tuzioca
+				</f:facet>
+			<h:outputText value="#{s.idTuzioc}" />
+		</h:column>
+
+		<h:column>
+			<f:facet name="header">
+    				Id Optuzenog
+				</f:facet>
+			<h:outputText value="#{s.idOptuzen}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">
+    				Sadrzaj
+				</f:facet>
+			<h:outputText value="#{s.sadrzaj}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">
+    				Status
+				</f:facet>
+			<h:outputText value="#{s.status}" />
+		</h:column>
+
+	</h:dataTable>
+	
+	<hr />
+	<h:form>
+		<h4>Predaj tuzbu sudiji</h4>
+		<h:outputLabel value="Id tuzbe:" />
+		<div>
+			<h:inputText value="#{sudController.idTuzbe}"></h:inputText>
+		</div>
+		<h:outputLabel value="Id sudije:" />
+		<div>
+			<h:inputText value="#{sudController.idSudije}"></h:inputText>
+		</div>
+
+
+		<h:commandButton value="Predaj"
+			action="#{sudController.dajTuzbuSudiji()}"></h:commandButton>
+
+	</h:form>
+	<hr />
+	
+	
+</body> 
+</html>
